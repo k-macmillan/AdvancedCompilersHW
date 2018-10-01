@@ -4,7 +4,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{graphicx}                   % PNGs
 \usepackage{hyperref}                   % Hyperlinks
-\usepackage{mathtools}
+\usepackage{amsmath}
+
 \hypersetup{
     colorlinks,
     linkcolor=black
@@ -47,7 +48,7 @@
 }
 
 \setcounter{page}{1}
-\section{Briefly explain the difference between}
+\section[Problem 1]{Briefly explain the difference between}
 \subsection{A compiler and an interpreter}
 Compilers are different from interpreters or they would not be separate things. In general terms a compiler takes something and turns it into something else. An interpreter does the same thing but not as efficiently. The compiler we use to compile C++ will read through our code and reduce it to assembly instructions for the machine we are on. While doing this it will evaluate some parts of the code and place things in an ``optimal'' ordering. An interpreter does not look at the code until execution, meaning it has no room to perform optimizations. Another difference is that interpreters are able to take code on the fly, whereas a compiled language must have everything at compile time. 
 
@@ -66,8 +67,10 @@ A just-in-time (JIT) compiler compiles as you send it commands, meaning at runti
 \subsection{Top-down parsing and bottom-up parsing}
 Top-down (TD) and bottom-up (BU) parsing refers to the methods of walking a parse tree. As can be assumed, they each begin at their respective ``ends'' of a tree. TD parsers can be attacked with a \textit{LL(k)} method where \textit{LL} means it descends the left nodes and has a look-ahead of \textit{k}. This naive method is 
 
-\section{Let L be the language \{abxba \mid{} x is any string of a's, b's, and c's not containing the substring ba\}}
+\newpage
+\section[Problem 2]{Let L be the language \{$abxba$ $\vert$ $x$ is any string of $a$'s, $b$'s, and $c$'s not containing the substring $ba$\}}
 
-\section{Let L be the set of all strings of a's and b's with the same number of a's as b's}
+\newpage
+\section[Problem 3]{Let L be the set of all strings of a's and b's with the same number of a's as b's}
 
 \end{document}
