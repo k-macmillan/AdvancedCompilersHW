@@ -2,4 +2,9 @@
 .nsf*
 
 # LaTeX Ignore
-.log
+*.log
+*.aux
+*.log
+*.toc
+*.out
+*.pdf

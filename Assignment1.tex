@@ -1,5 +1,6 @@
+% Assignment 1
 \documentclass{article}
-% \usepackage[left=2cm, right=2cm, top=2cm]{geometry}
+\usepackage[left=2cm, right=2cm, top=2cm]{geometry}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{graphicx}                   % PNGs
 \usepackage{hyperref}                   % Hyperlinks
@@ -12,7 +13,7 @@
 
 \pagenumbering{gobble}
 
-\title{\textbf{Assignment #1}}
+\title{\textbf{Assignment \#1}}
 \author{MacMillan, Kyle}
 \date{October 10, 2018}
 
@@ -38,23 +39,30 @@
 \pagenumbering{arabic}  % Set content page numbering to arabic numerals
 % Setup Hyperlinks for the rest of the document
 \hypersetup{
-    colorlinks,
     citecolor=blue,
     filecolor=black,
     linkcolor=blue,
     urlcolor=blue
 }
 
-\section{Briefly explain the difference between }}
+\section{Briefly explain the difference between}}
 \setcounter{page}{1} % Set the page counter to 3
 \subsection{A compiler and an interpreter}
-Compilers are different from interpreters or they would not be separate things. In general terms a compiler takes something and turns it into something else. An interpreter does the same thing but not as efficiently. The compiler we use to compile C++ will read through our code and reduce it to assembly instructions for the machine we are on. While doing this it will evaluate some parts of the code and place things in an ``optimal'' ordering. An interpreter does not look at the code until execution, meaning it has almost no room to perform optimizations. Another difference is that interpreters are able to take code on the fly, whereas a compiled language must have everything at compile time. 
+Compilers are different from interpreters or they would not be separate things. In general terms a compiler takes something and turns it into something else. An interpreter does the same thing but not as efficiently. The compiler we use to compile C++ will read through our code and reduce it to assembly instructions for the machine we are on. While doing this it will evaluate some parts of the code and place things in an ``optimal'' ordering. An interpreter does not look at the code until execution, meaning it has no room to perform optimizations. Another difference is that interpreters are able to take code on the fly, whereas a compiled language must have everything at compile time. 
 
 \subsection{A statically typed language and a dynamically typed language}
-Statically typed languages are strict on type, whereas dynamically typed languages determine which type to use. There are two primary benefits to statically typed languages:\\
+Statically typed languages strictly enforce \textit{type}, whereas dynamically typed languages determine which \textit{type} to use. There are two primary benefits to statically typed languages:\\
 \begin{itemize}
     \item type-safe -- You must declare the type and it will be enforced
     \item speed -- Knowing the type ahead of time means it doesn't have to figure it out on the fly
 \end{itemize}
+
+A dynamically typed language is able to determine the type on the fly which reduces development time but can also be confusing. Take Python for example. A function declaration with a variable named ``flow''. A user may not initially know if flow is a string or a flow rate (float). This confusion can make maintenance more difficult. There are pros and cons of both that need to be taken into consideration when choosing a language.
+
+\subsection{A just-in-time compiler and an interpreter}
+A just-in-time (JIT) compiler compiles as you send it commands, meaning at runtime. A JIT, such as what Java uses, will take the code and compile it to bytecode. An interpreter executes instructions. A JIT will have marginally better performance compared to an interpreter.
+
+\subsection{Top-down parsing and bottom-up parsing}
+Top-down and bottom-up parsing refers to the methods of walking a parse tree. As can be assumed, they each begin at their respective ``ends'' of a tree. 
 
 \end{document}
