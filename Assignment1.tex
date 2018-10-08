@@ -67,11 +67,39 @@ A just-in-time (JIT) compiler compiles as you send it commands, meaning at runti
 \subsection[Top-Down and Bottom-Up Parsing]{Top-down parsing and bottom-up parsing}
 Top-down (TD) and bottom-up (BU) parsing refers to the methods of constructing a parse tree. As can be assumed, they each begin at their respective ``ends'' of a tree. TD parsers can be attacked with a predictive \textit{LL(k)} method where \textit{LL} means it descends the left nodes and has a look-ahead of \textit{k}. BU parsing involves constructing a parse tree from a given input by starting at the bottom, ascending towards the root. BU parsing can use a shift-reduce method where the input string is reduced by shifting out the left-most element of the input to be evaluated. A tool for both Top-Down and Bottom-Up parsers is the \textbf{FIRST} and \textbf{FOLLOW} method.
 
+
+
+
 \newpage
 \section[Problem 2]{Let L be the language \{$abxba$ $\vert$ $x$ is any string of $a$'s, $b$'s, and $c$'s not containing the substring $ba$\}}
+\subsection[Minimum-State DFA]{Construct a minimum-state deterministic finite automaton for L}
+
+\subsection[Input String: abbcabcba]{Show how your DFA processes the input string abbcabcba}
+
+\subsection[Input String: abbcababa]{Show how your DFA processes the input string abbcababa}
+
+\subsection[Regular Expression for L]{Construct a regular expression for L}
+
+\subsection[Regular Expression generate: abbcabcba]{Show how your regular expression generates the input string abbcabcba}
+
+
+
+
 
 \newpage
 \section[Problem 3]{Let L be the set of all strings of a's and b's with the same number of a's as b's}
+\subsection[LL1 Grammar]{Construct an LL(1) grammar that generates L}
+
+\subsection[Generation Explanation]{Explain how your grammar generates L}
+
+\subsection[Proof of LL(1)]{Prove that your grammar is LL(1) }
+
+\subsection[Predictive Parser]{Construct a predictive parsing table for your grammar }
+
+\subsection[Predictive Parser: abbbaa]{Show how your predictive parser processes the input string abbbaa }
+
+
+
 
 \newpage
 \section[Problem 4]{Interactive desk calculator for prefix expressions}
@@ -82,6 +110,10 @@ Top-down (TD) and bottom-up (BU) parsing refers to the methods of constructing a
 \indent $1.\ + 1 - 2 3$ & output1 \\
 \indent $2.\ + 1 - 2$ & output2 \\
 \end{tabular}
+
+
+
+
 
 
 \newpage
