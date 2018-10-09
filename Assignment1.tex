@@ -5,6 +5,9 @@
 \usepackage{graphicx}                   % PNGs
 \usepackage{hyperref}                   % Hyperlinks
 \usepackage{amsmath}
+\usepackage{algorithm}                  % Algorithms
+\usepackage{algpseudocode}              % Algorithms
+\usepackage{pdfpages}                   % Include PDFs
 
 \hypersetup{
     colorlinks,
@@ -30,9 +33,9 @@
 \tableofcontents
 \addcontentsline{toc}{section}{Table of Contents}
 
-% \newpage
-% \listoffigures
-% \addcontentsline{toc}{section}{List of Figures}
+\newpage
+\listoffigures
+\addcontentsline{toc}{section}{List of Figures}
 
 % \listofalgorithms
 % \addcontentsline{toc}{section}{List of Algorithms}
@@ -53,12 +56,12 @@
 Compilers are different from interpreters or they would not be separate things. 
 In general terms a compiler takes something and turns it into something else. 
 An interpreter does the same thing but not as efficiently. The compiler we use 
-to compile C\texttt{++} will read through our code and reduce it to assembly instructions 
-for the machine we are on. While doing this it will evaluate some parts of the 
-code and place things in an ``optimal'' ordering. An interpreter does not look 
-at the code until execution, meaning it has no room to perform optimizations. 
-Another difference is that interpreters are able to take code on the fly, 
-whereas a compiled language must have everything at compile time. 
+to compile C\texttt{++} will read through our code and reduce it to assembly 
+instructions for the machine we are on. While doing this it will evaluate some 
+parts of the code and place things in an ``optimal'' ordering. An interpreter 
+does not look at the code until execution, meaning it has no room to perform 
+optimizations. Another difference is that interpreters are able to take code on 
+the fly, whereas a compiled language must have everything at compile time. 
 
 \subsection[Statically and Dynamically Typed Languages]{A statically typed 
 language and a dynamically typed language}
@@ -106,17 +109,36 @@ Bottom-Up parsers is the \textbf{FIRST} and \textbf{FOLLOW} method.
 of $a$'s, $b$'s, and $c$'s not containing the substring $ba$\}}
 \subsection[Minimum-State DFA]{Construct a minimum-state deterministic finite 
 automaton for L}
+Any string of $a$'s, $b$'s, and $c$'s not containing the substring $ba$ could 
+be rewritten as $x = (a^\ast b^\ast c^\ast)^\ast$ where $x$ contains every set 
+combination of $a$'s, $b$'s, and $c$'s such that $\{ba\} \cap x = \varepsilon$. 
+In order for $ba$ to not intersect $x$ we have to ensure the minimum-state DFA 
+cannot go from $b \to\ a$. The visualization is dentoted in Figure \ref{p1:dfa}. 
+Blue denotes the $x$ section and orange are empty sets. Of special note is that 
+where $b$ terminates it cannot pass \varepsilon.
+
+\begin{figure}[hc]
+\centering
+\includegraphics[scale=0.25]{images/Problem2-1}
+\caption{Minimum-State DFA}
+\label{p1:dfa}
+\end{figure}
+
 
 \subsection[Input String: abbcabcba]{Show how your DFA processes the input 
 string abbcabcba}
+filler
 
 \subsection[Input String: abbcababa]{Show how your DFA processes the input 
 string abbcababa}
+filler
 
 \subsection[Regular Expression for L]{Construct a regular expression for L}
+filler
 
 \subsection[Regular Expression generate: abbcabcba]{Show how your regular 
 expression generates the input string abbcabcba}
+filler
 
 
 
