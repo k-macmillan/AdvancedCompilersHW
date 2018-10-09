@@ -109,9 +109,23 @@ Bottom-Up parsers is the \textbf{FIRST} and \textbf{FOLLOW} method.
 of $a$'s, $b$'s, and $c$'s not containing the substring $ba$\}}
 \subsection[Minimum-State DFA]{Construct a minimum-state deterministic finite 
 automaton for L}
+The wording on this is a little ambiguous and I'm going to take it to mean that 
+the string denoted by $x$ can be an empty string because technically the empty 
+string does not contain $ba$. It could also be interpreted that the string $x$ 
+must contain at least one $a$, $b$, and $c$. This assignment is hard/long enough 
+as is and I don't believe that was the intent.
+
 Any string of $a$'s, $b$'s, and $c$'s not containing the substring $ba$ could 
-be rewritten as $x = (a^\ast b^\ast c^\ast)^\ast$ where $x$ contains every set 
-combination of $a$'s, $b$'s, and $c$'s such that $\{ba\} \cap x = \varepsilon$. 
+be rewritten as:
+
+\begin{equation}
+y = (a^\ast b^\ast c^\ast)^\ast
+\end{equation}
+
+\begin{equation}
+x \subset y \mid \{ba\} \cap x = \varepsilon
+\end{equation}
+
 In order for $ba$ to not intersect $x$ we have to ensure the minimum-state DFA 
 cannot go from $b \to\ a$. The visualization is dentoted in Figure \ref{fig:p2-1}. 
 Blue denotes the $x$ section and orange are empty sets. Of special note is that 
@@ -158,7 +172,7 @@ creating a critical failure. The process is outlined in Figure
 
 \subsection[Regular Expression for L]{Construct a regular expression for L}
 \begin{equation}
-ab (a^\ast | b^\ast c | c^\ast)^\ast b^\ast ba
+ab (a | b^\ast c | c)^\ast b^\ast ba
 \end{equation}
 
 \subsection[Regular Expression generate: abbcabcba]{Show how your regular 
@@ -180,10 +194,38 @@ expression generates the input string abbcabcba}
 \section[Problem 3]{Let L be the set of all strings of a's and b's with the 
 same number of a's as b's}
 \subsection[LL1 Grammar]{Construct an LL(1) grammar that generates L}
-filler
+\begin{tabular}{lll}$
+V = & \{S, A, B\} \\
+T = & \{a, b\} \\
+P = & \{ \\
+& & S \to \varepsilon \\
+& & S \to SASBS \\
+& & S \to SBSAS \\
+& & A \to a \\
+& & B \to b \\
+& \}$\\
+S = & \{S\} \\
+\end{tabular}
+\\
+
+\noindent Where each of those components is a part of the grammar defined by:
+\begin{equation}
+G = \langle V, T, P, S \rangle
+\end{equation}
 
 \subsection[Generation Explanation]{Explain how your grammar generates L}
-filler
+In the case of an empty set we simply apply the production $S \to \varepsilon$. 
+Let's assume the next simplest case: $ab$. Figure \ref{fig:p3-2} shows the steps 
+taken to generate input string $ab$ with the given grammar. Essentially we treat 
+start with $S$ since it is our $start position$. Given a look ahead of $1$ we 
+can assume the production rule $S \to SASBS$ instead of $S \to SBSAS$.
+
+\begin{figure}[hc]
+\centering
+\includegraphics[width=0.75\textwidth]{images/p3-2}}
+\caption[LL1 Grammar ``ab'']{Simple LL1 grammar where the input string is ``ab''}
+\label{fig:p3-2}
+\end{figure}
 
 \subsection[Proof of LL(1)]{Prove that your grammar is LL(1)}
 filler
@@ -194,7 +236,14 @@ filler
 
 \subsection[Predictive Parser: abbbaa]{Show how your predictive parser 
 processes the input string abbbaa}
-filler
+Figure \ref{fig:p3-5} details the walkthrough of input string $abbbaa$.
+
+\begin{figure}[hc]
+\centering
+\includegraphics[width=0.75\textwidth]{images/p3-5}}
+\caption[LL1 Grammar ``abbbaa'']{LL1 grammar where the input string is ``abbbaa''}
+\label{fig:p3-5}
+\end{figure}
 
 
 
