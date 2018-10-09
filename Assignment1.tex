@@ -214,15 +214,27 @@ that it lacks a clock that is tied to time in the real world.}
 \subsection[Turing Machine Double Click]{Explain how a Turing machine can 
 detect the fact that two mouse clicks occur close together in real-world time 
 even though it has no clock.}
-While the proposed machine does not have a clock, it will do computations, and 
-computations are discretizations. A turing machine can have an interger symbol 
-that counts the number of times it's able to add one to the symbol between key 
-presses, resetting the symbol after checking for a double click. If the symbol 
-value is in a predefined range it would be considered to be in the state of a 
-double-click. In order to qualify as a Turing Machine actions must be finite, 
-\textbf{discrete}, and distinguishable; memory is infinite, and it can run 
-until after the universe dies. So you can have arbitrarily ``long'' periods of 
-time between clicks.
 
+From what I found online the minimum definition for a 
+\href{https://en.wikipedia.org/wiki/Turing_machine#Formal_definition}
+{Turing Machine} is:
+$$M = \langle Q, \Gamma, b, \Sigma, \delta, q_0, F \rangle$$
+
+Anything following that formula is a Turing Machine, but I found nothing 
+stating a Turing Machine can't be added to. If $L$ and $R$ shift operations are 
+given a time component $t$, which defines an 8th variable for the tuple: 
+$\Delta t$, we can assume a Turing Machine would be capable of detecting a double 
+click event if the tape were programmed with symbols representing the click 
+events.
+
+$$M = \langle Q, \Gamma, b, \Sigma, \delta, q_0, F, \Delta t \rangle$$
+
+Another possibility is to construct an imitation Turing Machine. If we remove 
+the abstraction and build something of similar functionality we would be 
+constrained by computation time. Using this constraint to our advantage we would 
+be able to use an integer symbol that counts the number of times it's able to 
+add one to the symbol between key presses, resetting the symbol after checking 
+for a double click. If the symbol value is in a predefined range it would be 
+considered to be in the state of a double-click.
 
 \end{document}
