@@ -2,6 +2,7 @@
 .nsf*
 
 # LaTeX Ignore
+*.lof
 *.log
 *.aux
 *.log
