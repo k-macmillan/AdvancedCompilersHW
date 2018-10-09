@@ -113,7 +113,7 @@ Any string of $a$'s, $b$'s, and $c$'s not containing the substring $ba$ could
 be rewritten as $x = (a^\ast b^\ast c^\ast)^\ast$ where $x$ contains every set 
 combination of $a$'s, $b$'s, and $c$'s such that $\{ba\} \cap x = \varepsilon$. 
 In order for $ba$ to not intersect $x$ we have to ensure the minimum-state DFA 
-cannot go from $b \to\ a$. The visualization is dentoted in Figure \ref{p1:dfa}. 
+cannot go from $b \to\ a$. The visualization is dentoted in Figure \ref{fig:p2-1}. 
 Blue denotes the $x$ section and orange are empty sets. Of special note is that 
 where $b$ terminates it cannot pass \varepsilon.
 
@@ -121,17 +121,40 @@ where $b$ terminates it cannot pass \varepsilon.
 \centering
 \includegraphics[width=0.5\textwidth]{images/p2-1}}
 \caption{Minimum-State DFA}
-\label{p1:dfa}
+\label{fig:p2-1}
 \end{figure}
 
 
 \subsection[Input String: abbcabcba]{Show how your DFA processes the input 
 string abbcabcba}
-filler
+$ab$ is the standard entry point, which leaves us with $bcabcba$. While sitting 
+at the $a$ node it will advance to $b$, then to $c$, and back to $a$, leaving us 
+with $bcba$. From $a$ it will advance to $b$, then to $c$, exiting the ``$x$'' 
+portion of our DFA, following $ba$ to the $q_{final}$. This process is outlined 
+in Figure \ref{fig:p2-2}.
+
+\begin{figure}[hc]
+\centering
+\includegraphics[width=0.5\textwidth]{images/p2-2}}
+\caption{Evaluating abbcabcba}
+\label{fig:p2-2}
+\end{figure}
 
 \subsection[Input String: abbcababa]{Show how your DFA processes the input 
 string abbcababa}
-filler
+$ab$ is the standard entry point, which leaves us with $bcabcba$. While sitting 
+at the $a$ node it will advance to $b$, then to $c$, and back to $a$, leaving us 
+with $bcba$. From $a$ it will advance to $b$, there is no path from $b$ to $a$, 
+so it will hop to $q_{final}$ and still have characters left to evaluate, 
+creating a critical failure to be thrown. The process is outlined in Figure 
+\ref{fig:p2-3}.
+
+\begin{figure}[hc]
+\centering
+\includegraphics[width=0.5\textwidth]{images/p2-3}}
+\caption{Evaluating abbcababa}
+\label{fig:p2-3}
+\end{figure}
 
 \subsection[Regular Expression for L]{Construct a regular expression for L}
 filler
