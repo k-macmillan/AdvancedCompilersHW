@@ -218,9 +218,11 @@ G = \langle V, T, P, S \rangle
 \subsection[Generation Explanation]{Explain how your grammar generates L}
 In the case of an empty set we simply apply the production $S \to \varepsilon$. 
 Let's assume the next simplest case: $ab$. Figure \ref{fig:p3-2} shows the steps 
-taken to generate input string $ab$ with the given grammar. Essentially we treat 
-start with $S$ since it is our $start position$. Given a look ahead of $1$ we 
-can assume the production rule $S \to SASBS$ instead of $S \to SBSAS$.
+taken to generate input string $ab$ with the given grammar. We start with $S$ 
+since it is our $start position$. Given a look ahead of $1$ we can assume the 
+production rule $S \to SASBS$ instead of $S \to SBSAS$, given the prediction 
+rules in Table \ref{tab:ppt}. From there we walk each step, taking the 
+appropriate prediction.
 
 \begin{figure}[hc]
 \centering
@@ -236,6 +238,7 @@ filler
 grammar}
 \begin{table}[h]
     \caption{Predictive Parse Table}
+    \label{tab:ppt}
     \centering
     \begin{tabular}{ | l | c | c | c |}
         \hline
