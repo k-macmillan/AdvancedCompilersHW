@@ -232,7 +232,8 @@ appropriate prediction.
 \end{figure}
 
 \subsection[Proof of LL(1)]{Prove that your grammar is LL(1)}
-filler
+By Table \ref{tab:ppt} we can see there are no cells containing more than one 
+production rule, therefore we assume the grammar is LL(1).
 
 \subsection[Predictive Parse Table]{Construct a predictive parsing table for your 
 grammar}
@@ -242,7 +243,7 @@ grammar}
     \centering
     \begin{tabular}{ | l | c | c | c |}
         \hline
-          & $a$ & $b$ & \$ \\ \hline
+            & $a$ & $b$ & \$ \\ \hline
         $S$ & $S \to SASBS$ & $S \to SBSAS$ & $\varepsilon$ \\ \hline
         $A$ & $A \to a$ & &  \\ \hline
         $B$ &  & $B \to b$ & \\
