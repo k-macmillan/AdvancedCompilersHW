@@ -4,6 +4,7 @@
 # LaTeX Ignore
 *.lof
 *.log
+*.lot
 *.aux
 *.log
 *.toc

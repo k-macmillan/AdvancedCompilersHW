@@ -36,6 +36,8 @@
 \newpage
 \listoffigures
 \addcontentsline{toc}{section}{List of Figures}
+\listoftables
+\addcontentsline{toc}{section}{List of Tables}
 
 % \listofalgorithms
 % \addcontentsline{toc}{section}{List of Algorithms}
@@ -195,16 +197,16 @@ expression generates the input string abbcabcba}
 same number of a's as b's}
 \subsection[LL1 Grammar]{Construct an LL(1) grammar that generates L}
 \begin{tabular}{lll}$
-V = & \{S, A, B\} \\
-T = & \{a, b\} \\
-P = & \{ \\
-& & S \to SASBS \\
-& & S \to SBSAS \\
-& & S \to \varepsilon \\
-& & A \to a \\
-& & B \to b \\
-& \}$\\
-S = & \{S\} \\
+$V = $& $\{S, A, B\}$ \\
+$T = $& $\{a, b\}$ \\
+$P = $& $\{$ \\
+& & $S \to SASBS$ \\
+& & $S \to SBSAS$ \\
+& & $S \to \varepsilon$ \\
+& & $A \to a$ \\
+& & $B \to b$ \\
+& $\}$\\
+$S = $ & $\{S\}$ \\
 \end{tabular}
 \\
 
@@ -230,9 +232,20 @@ can assume the production rule $S \to SASBS$ instead of $S \to SBSAS$.
 \subsection[Proof of LL(1)]{Prove that your grammar is LL(1)}
 filler
 
-\subsection[Predictive Parser]{Construct a predictive parsing table for your 
+\subsection[Predictive Parse Table]{Construct a predictive parsing table for your 
 grammar}
-filler
+\begin{table}[h]
+    \caption{Predictive Parse Table}
+    \centering
+    \begin{tabular}{ | l | c | c | c |}
+        \hline
+          & $a$ & $b$ & \$ \\ \hline
+        $S$ & $S \to SASBS$ & $S \to SBSAS$ & $\varepsilon$ \\ \hline
+        $A$ & $A \to a$ & &  \\ \hline
+        $B$ &  & $B \to b$ & \\
+        \hline
+    \end{tabular}
+\end{table}
 
 \subsection[Predictive Parser: abbbaa]{Show how your predictive parser 
 processes the input string abbbaa}
