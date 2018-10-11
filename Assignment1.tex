@@ -149,12 +149,29 @@ with $bcba$. From $a$ it will advance to $b$, then to $c$, exiting the ``$x$''
 portion of our DFA, following $ba$ to $q_{final}$. This process is outlined 
 in Figure \ref{fig:p2-2}.
 
-\begin{figure}[hc]
+% \begin{figure}[hc]
+% \centering
+% \includegraphics[width=0.5\textwidth]{images/p2-2}}
+% \caption{Evaluating abbcabcba}
+% \label{fig:p2-2}
+% \end{figure}
+
+\begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth]{images/p2-2}}
-\caption{Evaluating abbcabcba}
-\label{fig:p2-2}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.75\linewidth]{images/p2-2}
+  \caption{Evaluating abbcabcba}
+  \label{fig:p2-2}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.75\linewidth]{images/p2-3}
+  \caption{Evaluating abbcababa}
+  \label{fig:p2-3}
+\end{minipage}
 \end{figure}
+
 
 \subsection[Input String: abbcababa]{Show how your DFA processes the input 
 string abbcababa}
@@ -165,12 +182,12 @@ so it will hop to $q_{final}$ and still have characters left to evaluate,
 creating a critical failure. The process is outlined in Figure 
 \ref{fig:p2-3}.
 
-\begin{figure}[hc]
-\centering
-\includegraphics[width=0.5\textwidth]{images/p2-3}}
-\caption{Evaluating abbcababa}
-\label{fig:p2-3}
-\end{figure}
+% \begin{figure}[hc]
+% \centering
+% \includegraphics[width=0.5\textwidth]{images/p2-3}}
+% \caption{Evaluating abbcababa}
+% \label{fig:p2-3}
+% \end{figure}
 
 \subsection[Regular Expression for L]{Construct a regular expression for L}
 \begin{equation}
@@ -214,13 +231,35 @@ G = \langle V, T, P, S \rangle
 \end{equation}
 
 \subsection[Generation Explanation]{Explain how your grammar generates L}
-In the case of an empty set we simply apply the production $S \to \varepsilon$. 
-Let's assume the next simplest case: $ab$. Figure \ref{fig:p3-2} shows the steps 
+Let's assume the simplest case: $ab$. Figure \ref{fig:p3-2} shows the steps 
 taken to generate input string $ab$ with the given grammar. We start with $S$ 
-since it is our $start position$. Given a look ahead of $1$ we can assume the 
+since it is our $start\ position$. Given a look ahead of $1$ we can assume the 
 production rule $S \to SASBS$ instead of $S \to SBSAS$, given the prediction 
 rules in Table \ref{tab:ppt}. From there we walk each step, taking the 
-appropriate prediction.
+appropriate prediction. An important note is that the implementation of this 
+grammar needs to look at the full stack. 
+
+For example in Figure \ref{fig:p3-2} we can see on the second line:\\
+
+\begin{tabular}{lll}
+$SASBS$ & $ab$ & $S \to \varepsilon$ \\\\
+\end{tabular}
+
+
+
+Observe that $\varepsilon$ is chosen. This is because $LL(1)$ sees an $a$ on the 
+input, and when evaluating it's stack it sees an $A$ immediately after the 
+left-most $S$, that means it does not need to pull in another $SASBS$. Compare 
+that to Figure \ref{fig:p3-5}'s line:\\
+
+\begin{tabular}{lll}
+$SAS$ & $baa$ & $S \to SBSAS$ \\\\
+\end{tabular}
+
+The input variable seen by $LL(1)$ is $b$, and the variable following $S$ is $A$, 
+therefore it follows the prediction table. A more cleanly written grammar 
+wouldn't need the added complexity but eventually you have to give up and take 
+a solution that works.
 
 \begin{figure}[hc]
 \centering
@@ -255,7 +294,7 @@ Figure \ref{fig:p3-5} details the walkthrough of input string $abbbaa$.
 
 \begin{figure}[hc]
 \centering
-\includegraphics[width=0.75\textwidth]{images/p3-5}}
+\includegraphics[width=0.65\textwidth]{images/p3-5}}
 \caption[LL1 Grammar ``abbbaa'']{LL1 grammar where the input string is ``abbbaa''}
 \label{fig:p3-5}
 \end{figure}
@@ -270,18 +309,51 @@ implement an interpreter that evaluates newline-terminated input lines of
 prefix arithmetic expressions. The expressions may contain integers and 
 operators for addition, subtraction, multiplication, division, and negation. 
 The answers are to be integers. Show the Lex-Yacc code for your calculator}
-filler
+No matter what I tried I could not figure out how to get an ``operator'' parse 
+rule to work so the code is not what I wanted, at all. Figure \ref{fig:p4-1-Y} 
+shows the yacc code, and Figure \ref{fig:p4-1-L} shows the Lex code. 
+
+The section starting on Figure \ref{fig:p4-1-Y} line 43 should have been 
+something to the effect of $operator\ NUMBER\ operator$. The production rule 
+after that should have been something to the  effect of 
+$operator\ NUMBER\ operator\ NUMBER$. Even that isn't right though. I needed a 
+stack and I could not figure it out in Lex/Yacc and searches online yielded 
+nothing.
+
+\begin{figure}[hc]
+\centering
+\includegraphics[width=0.75\textwidth]{images/p4-1-L}}
+\caption[Lex Code]{Lex code for prefix calculator}
+\label{fig:p4-1-L}
+\end{figure}
+
+\begin{figure}[hc]
+\centering
+\includegraphics[width=0.75\textwidth]{images/p4-1-Y}}
+\caption[Yacc Code]{Yacc code for prefix calculator}
+\label{fig:p4-1-Y}
+\end{figure}
 
 \subsection[Calculator Output]{Show the output generated by your calculator for}
 
 \begin{tabular}{ll}
-\indent 1. \texttt{+ 1 - 2 3} & output1 \\
-\indent 2. \texttt{+ 1 - 2} & output2 \\
+\indent 1. \texttt{+ 1 - 2 3} & See Figure \ref{fig:p4-2-1} \\
+\indent 2. \texttt{+ 1 - 2} & See Figure \ref{fig:p4-2-2} \\
 \end{tabular}
 
+\begin{figure}[hc]
+\centering
+\includegraphics[width=0.4\textwidth]{images/p4-2-1}}
+\caption[Lex/Yacc parse + 1 - 2 3]{Lex/Yacc parsing of string: + 1 - 2 3}
+\label{fig:p4-2-1}
+\end{figure}
 
-
-
+\begin{figure}[hc]
+\centering
+\includegraphics[width=0.4\textwidth]{images/p4-2-2}}
+\caption[Lex/Yacc parse + 1 - 2]{Lex/Yacc parsing of string: + 1 - 2}
+\label{fig:p4-2-2}
+\end{figure}
 
 
 \newpage
